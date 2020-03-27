@@ -110,7 +110,7 @@ public class TestMoteurRpn {
 	}
 	
 	
-	/* tester une operation qui n'existe pas*/
+	/* tester une operation qui n'existe pas, le test échoue*/
 	@Test (expected=Exception.class)
 	public void test() throws Exception {
 		
@@ -126,5 +126,17 @@ public class TestMoteurRpn {
 		
 	}
 	
+	/* tester avec une seule operande , le test echoue*/
+	@Test (expected=Exception.class)
+	public void test2() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		  moteur.enregistrer_op(2);
+		  moteur.execComd("+");
+		
+	}
 	
+
 }
