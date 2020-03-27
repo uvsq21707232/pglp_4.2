@@ -138,5 +138,22 @@ public class TestMoteurRpn {
 		
 	}
 	
-
+/* tester la Division par zéro */
+	
+	@Test (expected=Exception.class)
+	public void testDivisionPaeZero() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		
+		moteur.enregistrer_op(2);
+		moteur.enregistrer_op(0);
+		
+		/* exécuter la divisionParZero*/
+		
+		  moteur.execComd("/");
+		 
+	}
 }
