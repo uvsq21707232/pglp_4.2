@@ -33,4 +33,41 @@ public class TestMoteurRpn {
 		
 		
 	}
+	
+	/* tester la Division*/
+	@Test
+	public void testDivision() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		
+		moteur.enregistrer_op(2);
+		moteur.enregistrer_op(3);
+		
+		/* exécuter la multiplication*/
+		
+		  moteur.execComd("/");
+		
+		/* tester le resultat*/
+		Stack<Integer> resultat = new Stack<Integer>();
+		
+		resultat.push(1);
+		assertEquals(pile,resultat);
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
