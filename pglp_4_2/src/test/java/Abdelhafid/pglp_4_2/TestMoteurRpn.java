@@ -43,8 +43,8 @@ public class TestMoteurRpn {
 		
 		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
 		
-		moteur.enregistrer_op(2);
-		moteur.enregistrer_op(3);
+		moteur.enregistrer_op(4);
+		moteur.enregistrer_op(8);
 		
 		/* exécuter la division*/
 		
@@ -53,7 +53,7 @@ public class TestMoteurRpn {
 		/* tester le resultat*/
 		Stack<Integer> resultat = new Stack<Integer>();
 		
-		resultat.push(1);
+		resultat.push(2);
 		assertEquals(pile,resultat);
 			
 	}
@@ -106,14 +106,25 @@ public class TestMoteurRpn {
 		
 		resultat.push(-1);
 		assertEquals(pile,resultat);
-		
-		
-		
+			
 	}
 	
 	
-	
-	
+	/* tester une operation qui n'existe pas*/
+	@Test (expected=Exception.class)
+	public void test() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		
+		moteur.enregistrer_op(3);
+		moteur.enregistrer_op(2);
+		  moteur.execComd("(");
+		
+		
+	}
 	
 	
 }
