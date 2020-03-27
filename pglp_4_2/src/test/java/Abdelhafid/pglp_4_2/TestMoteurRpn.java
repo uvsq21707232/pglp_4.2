@@ -46,7 +46,7 @@ public class TestMoteurRpn {
 		moteur.enregistrer_op(2);
 		moteur.enregistrer_op(3);
 		
-		/* exécuter la multiplication*/
+		/* exécuter la division*/
 		
 		  moteur.execComd("/");
 		
@@ -55,13 +55,35 @@ public class TestMoteurRpn {
 		
 		resultat.push(1);
 		assertEquals(pile,resultat);
+			
+	}
+	
+	
+	/* tester la multiplication*/
+	@Test
+	public void testAddition() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		
+		moteur.enregistrer_op(5);
+		moteur.enregistrer_op(4);
+		
+		/* exécuter l'addition*/
+		
+		  moteur.execComd("+");
+		
+		/* tester le resultat*/
+		Stack<Integer> resultat = new Stack<Integer>();
+		
+		resultat.push(9);
+		assertEquals(pile,resultat);
 		
 		
 		
 	}
-	
-	
-	
 	
 	
 	
