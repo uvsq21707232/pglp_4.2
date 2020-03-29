@@ -156,4 +156,24 @@ public class TestMoteurRpn {
 		  moteur.execComd("/");
 		 
 	}
+	
+	@Test (expected=Exception.class)
+	public void test3() throws Exception {
+		
+		Stack<Integer> pile = new Stack<Integer>();
+		Undo undo = new Undo(pile);
+		
+		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
+		
+		moteur.enregistrer_op(2);
+		moteur.enregistrer_op(7);
+		
+		/* exécuter la divisionParZero*/
+		
+		  moteur.execComd("/");
+		  moteur.affichage();
+		 
+	}
+	
+	
 }
