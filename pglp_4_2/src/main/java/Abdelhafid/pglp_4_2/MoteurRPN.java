@@ -36,27 +36,40 @@ public class MoteurRPN {
 	    }
 	/* Execute une commande*/
 	
-	void execComd(final String command) {
+	void execComd(final String command) throws Exception {
 		
-        if (Operation.containsKey(command) && pile.size() >= 2) {
+       if (Operation.containsKey(command)){
+        		
+        	 if(pile.size() >= 2) {
         	
         	int a=pile.pop();
         	int b=pile.pop();
+        	try {
         	
             pile.push(Operation.get(command).apply(a, b));
             undo.addHist();
+        	}catch (Exception exept) {
+                pile.push(a);
+                pile.push(b);
+                throw exept;
+        	}
             }else {
             	System.out.println("le nombre d'operande est insuffisant");
+            	 throw new Exception();
             }
-          
-	  
-        }
+       } else {
+             
+       throw new Exception();
+            }
+            
+       }
+	
 	
 	/* Affichage des oreande dans la pile*/
 	
 	void affichage() {
 		
-        System.out.printf(" la pile :");
+        System.out.printf(" résultat :");
         for (int operande : pile) {
             System.out.printf(" " + operande + " ");
         }
