@@ -7,173 +7,165 @@ import java.util.Stack;
 import org.junit.Test;
 
 public class TestMoteurRpn {
-	
-	/* tester la multiplication*/
+
+	/* tester la multiplication */
 	@Test
 	public void testMultiplication() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(5);
 		moteur.enregistrer_op(4);
-		
-		/* exécuter la multiplication*/
-		
-		  moteur.execComd("*");
-		
-		/* tester le resultat*/
+
+		/* exécuter la multiplication */
+
+		moteur.execComd("*");
+
+		/* tester le resultat */
 		Stack<Integer> resultat = new Stack<Integer>();
-		
+
 		resultat.push(20);
-		assertEquals(pile,resultat);
-		
-		
-		
+		assertEquals(pile, resultat);
+
 	}
-	
-	/* tester la Division*/
+
+	/* tester la Division */
 	@Test
 	public void testDivision() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(4);
 		moteur.enregistrer_op(8);
-		
-		/* exécuter la division*/
-		
-		  moteur.execComd("/");
-		
-		/* tester le resultat*/
+
+		/* exécuter la division */
+
+		moteur.execComd("/");
+
+		/* tester le resultat */
 		Stack<Integer> resultat = new Stack<Integer>();
-		
+
 		resultat.push(2);
-		assertEquals(pile,resultat);
-			
+		assertEquals(pile, resultat);
+
 	}
-	
-	
-	/* tester l'addition*/
+
+	/* tester l'addition */
 	@Test
 	public void testAddition() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(5);
 		moteur.enregistrer_op(4);
-		
-		/* exécuter l'addition*/
-		
-		  moteur.execComd("+");
-		
-		/* tester le resultat*/
+
+		/* exécuter l'addition */
+
+		moteur.execComd("+");
+
+		/* tester le resultat */
 		Stack<Integer> resultat = new Stack<Integer>();
-		
+
 		resultat.push(9);
-		assertEquals(pile,resultat);
-		
-		
-		
+		assertEquals(pile, resultat);
+
 	}
-	
-	/* tester la Soustraction*/
+
+	/* tester la Soustraction */
 	@Test
 	public void testSoustraction() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(5);
 		moteur.enregistrer_op(4);
-		
-		/* exécuter la Soustraction*/
-		
-		  moteur.execComd("-");
-		
-		/* tester le resultat*/
+
+		/* exécuter la Soustraction */
+
+		moteur.execComd("-");
+
+		/* tester le resultat */
 		Stack<Integer> resultat = new Stack<Integer>();
-		
+
 		resultat.push(-1);
-		assertEquals(pile,resultat);
-			
+		assertEquals(pile, resultat);
+
 	}
-	
-	
-	/* tester une operation qui n'existe pas, le test échoue*/
-	@Test (expected=Exception.class)
+
+	/* tester une operation qui n'existe pas, le test échoue */
+	@Test(expected = Exception.class)
 	public void test() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(3);
 		moteur.enregistrer_op(2);
-		  moteur.execComd("(");
-		
-		
+		moteur.execComd("(");
+
 	}
-	
-	/* tester avec une seule operande , le test echoue*/
-	@Test (expected=Exception.class)
+
+	/* tester avec une seule operande , le test echoue */
+	@Test(expected = Exception.class)
 	public void test2() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		  moteur.enregistrer_op(2);
-		  moteur.execComd("+");
-		
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+		moteur.enregistrer_op(2);
+		moteur.execComd("+");
+
 	}
-	
-/* tester la Division par zéro */
-	
-	@Test (expected=Exception.class)
+
+	/* tester la Division par zéro */
+
+	@Test(expected = Exception.class)
 	public void testDivisionPaeZero() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(2);
 		moteur.enregistrer_op(0);
-		
-		/* exécuter la divisionParZero*/
-		
-		  moteur.execComd("/");
-		 
+
+		/* exécuter la divisionParZero */
+
+		moteur.execComd("/");
+
 	}
-	
-	@Test (expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void test3() throws Exception {
-		
+
 		Stack<Integer> pile = new Stack<Integer>();
 		Undo undo = new Undo(pile);
-		
-		MoteurRPN moteur= MoteurRPN.initialiser(pile, undo);
-		
+
+		MoteurRPN moteur = MoteurRPN.initialiser(pile, undo);
+
 		moteur.enregistrer_op(2);
 		moteur.enregistrer_op(7);
-		
-		/* exécuter la divisionParZero*/
-		
-		  moteur.execComd("/");
-		  moteur.affichage();
-		 
+
+		/* exécuter la divisionParZero */
+
+		moteur.execComd("/");
+		moteur.affichage();
+
 	}
-	
-	
+
 }
